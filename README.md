@@ -13,11 +13,11 @@ Domain Detective is a command-line tool that allows you to check the HTTP status
  
  ----
 ## Usage 
-    $ DD.py --domain google.com
+    $ python DD.py --domain google.com
 
-    $ DD.py --file <file_path> --output <output_file
+    $ python DD.py --file <file_path> --output <output_file
 
-    $ DD.py --help
+    $ python DD.py --help
  ----
 ## 🔗 Links
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mhmmdashraf/)
