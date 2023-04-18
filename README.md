@@ -1,4 +1,4 @@
-# Domain-Detective
+# Domain Detective
 Domain Detective is a command-line tool that allows you to check the HTTP status code of a single domain or multiple domains. It uses the Python requests library to send HTTP requests to domains, and the tqdm library to display a progress bar for the checking process.
 
 ### The tool can be used in two ways:
