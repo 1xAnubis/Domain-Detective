@@ -1,5 +1,6 @@
 import requests
 import argparse
+import re
 import sys
 import os.path
 from tqdm import tqdm
@@ -8,9 +9,8 @@ import pyfiglet
 
 
 def validate_domain_name(domain_name):
-    if ' ' in domain_name or not domain_name:
-        return False
-    return True
+    if not re.match(r"^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", domain_name):
+        raise ValueError(f"Invalid domain name: {domain_name}")
 
 def check_status_code(domain):
     try:
