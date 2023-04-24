@@ -27,7 +27,7 @@ def get_ip_address(domain):
         ip_address = socket.gethostbyname(domain)
         print(colored(f"{domain} -- IP address: {ip_address}", "cyan"))
     except socket.gaierror as e:
-        print(" -- Error : "+ domain + e)
+        print(f" -- Error : {domain} {e}")
 
 def check_status_code(domain):
     try:
