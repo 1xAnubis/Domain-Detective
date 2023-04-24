@@ -2,6 +2,7 @@ import requests
 import argparse
 import re
 import sys
+from urllib.parse import urlparse
 import os.path
 from tqdm import tqdm
 from termcolor import colored
@@ -9,9 +10,15 @@ import pyfiglet
 
 
 def validate_domain_name(domain_name):
-    if not re.match(r"^[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", domain_name):
-        raise ValueError(f"Invalid domain name: {domain_name}")
+    domain_name = domain_name.strip()
 
+    if domain_name.startswith(("http://", "https://")):
+        domain_name = urlparse(domain_name).hostname
+
+    if not re.match(r"(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z0-9-]{1,63})+$", domain_name):
+        raise ValueError(f"Invalid domain name: {domain_name}")
+    
+    return domain_name
 def check_status_code(domain):
     try:
         response = requests.get(f"https://{domain}")
