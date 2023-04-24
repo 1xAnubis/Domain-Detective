@@ -7,6 +7,8 @@ import os.path
 from tqdm import tqdm
 from termcolor import colored
 import pyfiglet
+import socket
+
 
 
 def validate_domain_name(domain_name):
@@ -19,6 +21,14 @@ def validate_domain_name(domain_name):
         raise ValueError(f"Invalid domain name: {domain_name}")
     
     return domain_name
+
+def get_ip_address(domain):
+    try:
+        ip_address = socket.gethostbyname(domain)
+        print(colored(f"{domain} -- IP address: {ip_address}", "cyan"))
+    except socket.gaierror as e:
+        print(" -- Error : "+ domain + e)
+
 def check_status_code(domain):
     try:
         response = requests.get(f"https://{domain}")
@@ -80,6 +90,7 @@ def main():
             print(colored("Invalid domain name, please try again.", "red"))
             sys.exit()
         check_status_code(args.domain)
+        get_ip_address(args.domain)
 
     if args.file:
         if not os.path.isfile(args.file):
